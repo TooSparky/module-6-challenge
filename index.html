@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Search</title>
+    <link rel="stylesheet" href="./develop/styles.css" />
+</head>
+<body>
+    <header class="header-container">
+        <h1 id="header">Weather Dashboard</h1>
+    </header>
+
+    <main id="forecast-section">
+        <!-- Recently Searched City -->
+        <section id="current-day-forecast-section">
+            <div id="current-day">
+                <h2 id="searched-city"></h2>
+    
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
+            </div>
+        </section>
+
+        <!-- 5 day forcast -->
+        <section id="five-day-forecast-section">
+            <div class="day-1">
+                <h3 class="date"></h3>
+
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
+            </div>
+
+            <div class="day-2">
+                <h3 class="date"></h3>
+
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
+            </div>
+
+            <div class="day-3">
+                <h3 class="date"></h3>
+
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
+            </div>
+
+            <div class="day-4">
+                <h3 class="date"></h3>
+
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
+            </div>
+
+            <div class="day-5">
+                <h3 class="date"></h3>
+
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
+            </div>
+        </section>
+    </main>
+
+    <section id="search-section">
+        <div id="form-container">
+            <h2 class="search-h2">Search for a City: </h2>
+            <!-- PUT LAST SEARCHED CITY IN PLACEHOLDER -->
+
+            <!-- Action is where to send form -->
+            <form action="">
+                <label for="search" id="search-bar-label"></label>
+                <input type="text" placeholder="Search..." name="search" id="search-bar"/>
+
+                <div>
+                    <button type="button" id="search-btn">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="recently-searched-container">
+            <p id="recently-searched-city"></p>
+        </div>
+    </section>
+
+    <!-- JQuery script -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- DayJS Script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- My JavaScript Script -->
+    <script src="./develop/script.js"></script>
+</body>
+</html>

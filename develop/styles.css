@@ -1,0 +1,77 @@
+/* Universal Selector */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header Section */
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    border: 1px solid black;
+    background-image: linear-gradient(to right, rgb(80, 80, 255), rgb(0, 0, 71));
+    margin: 0.5rem;
+}
+
+#header {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Column Split Section */
+#search-section {
+    width: 18%;
+    float: left;
+}
+
+#forecast-section {
+    width: 82%;
+    float: right;
+    padding-right: 15rem;
+    padding-left: 3rem;
+    padding-top: 1rem;
+}
+
+/* Search Section */
+#form-container {
+    border-bottom: 1px solid black;
+    margin-left: 1rem;
+}
+
+.search-h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#search-bar {
+    border-radius: 0.3rem;
+    width: 20rem;
+    height: 2.5rem;
+    margin-top: 0.5rem;
+}
+
+#search-btn {
+    margin-top: 1rem;
+    width: 20rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+    background-color: rgb(66, 157, 255);
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+/* Forecast Section */
+#current-day-forecast-section {
+    border: 1px solid black;
+    height: 20vh;
+}
+
+#five-day-forecast-section {
+    border: 1px solid black;
+    height: 30vh;
+    margin-top: 1rem;
+}
