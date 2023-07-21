@@ -1,5 +1,31 @@
+// Global Variables
+var headerDiv = $('.header-container');
+var header = $('#header');
+var temperature = $('.temp');
+var wind = $('.wind');
+var humidity = $('.humidity');
+var date = $('.date');
+var citySearched = $('#searched-city');
+var searchBar = $('#search-bar');
+var searchBtn = $('#search-btn');
+var cityQue = $('#recently-searched-city');
+var form = $('#form');
+
+// API CALLBACK LINK
+// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
 
+// Adjusts the search links
+function apiCall() {
+
+}
+
+// On search, calls apiCall function
+searchBtn.on('click', apiCall);
+
+function searchHistory() {
+    
+}
 
 
 
