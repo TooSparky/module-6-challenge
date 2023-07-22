@@ -64,6 +64,23 @@
     margin-bottom: 1rem;
 }
 
+.clean-up-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.3rem;
+    margin-left: 1rem;
+}
+
+.clean-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+}
+
 /* Forecast Section */
 #current-day-forecast-section {
     border: 1px solid black;
@@ -74,4 +91,12 @@
     border: 1px solid black;
     height: 30vh;
     margin-top: 1rem;
+}
+
+.head {
+    font-size: 1.5rem;
+}
+
+.hide {
+    visibility: hidden;
 }

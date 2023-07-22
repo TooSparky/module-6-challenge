@@ -9,12 +9,16 @@ var citySearched = $('#searched-city');
 var searchBar = $('#search-bar');
 var searchBtn = $('#search-btn');
 var cityQue = $('#recently-searched-city');
+var cityQueContainer = $('#recently-searched-container');
 var form = $('#form');
 var searchInputVal = $('#search-bar');
 var currentDay = $('#current-day');
 
 // API CALLBACK LINK
 // api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
+// On search, calls apiCall function
+searchBtn.on('click', handleFormSubmit);
 
 
 function handleFormSubmit(event) {
@@ -27,6 +31,8 @@ function handleFormSubmit(event) {
         return;
     }
 
+    console.log(searchInputVal);
+    setSearchHistory(searchInputVal);
     apiSearch(searchInputVal);
 }
 
@@ -38,7 +44,7 @@ function apiSearch(searchInputVal) {
     if (searchInputVal) {
         latAndLonLink = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=60211b1fb1aaf71717286d520f6cfd4c`;
     }
-    
+
     fetch(latAndLonLink)
         .then(function (response) {
             if(!response.ok) {
@@ -47,60 +53,78 @@ function apiSearch(searchInputVal) {
             return response.json();
         })
         .then(function (data) {
+
             console.log(data);
             var latValue = data[0].lat;
             var lonValue = data[0].lon;
-
-            weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
-            console.log(weatherLink);
-
-            // weatherLink WORKS ABOVE, BUT NOT BELOW THIS LINE
-
+            var weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
             
+            return fetch(weatherLink)
+            .then(function (response) {
+                if(!response.ok) {
+                    return Promise.reject(Error('Response is bad!'));
+                }
+            })
+            .then(function (data) {
+                console.log(data);
+            })
         })
         .catch(function (error) {
             console.log(error);
         });
 
-        weatherSearchApi();
+        weatherSearchApi(weatherLink);
 }
 
-// function weatherSearchApi() {
+function weatherSearchApi(weatherLink) {
 
-//     var weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=&lon=&appid=60211b1fb1aaf71717286d520f6cfd4c`;
+    var weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=&lon=&appid=60211b1fb1aaf71717286d520f6cfd4c`;
 
-//     var latValue = '33.7489924';
-//     var lonValue = '-84.3902644';
+    if(weatherLink) {
+        weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
+    }
 
-//     if(weatherLink) {
-//         weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
-//     }
-
-//     fetch(weatherLink)
-//         .then(function (response) {
-//             if(!response.ok) {
-//                 return Promise.reject(Error('Response is bad!'));
-//             }
-//             return response.json();
-//         })
-//         .then(function (data) {
-//             console.log(data);
-//         })
-//         .catch(function (error) {
-//             console.log(error);
-//         });
+    fetch(weatherLink)
+        .then(function (response) {
+            if(!response.ok) {
+                return Promise.reject(Error('Response is bad!'));
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
 
-// }
+}
 
-// API KEY
-// 60211b1fb1aaf71717286d520f6cfd4c
+function weatherDisplay(lastCity) {
+    // display all my api data to the window
+}
 
-// On search, calls apiCall function
-searchBtn.on('click', handleFormSubmit);
+function setSearchHistory(searchInputVal) {
+    cityQue.removeClass('hide');
+    // cityQue.text(searchInputVal);
 
-function searchHistory() {
-    
+    localStorage.setItem("searchInputVal", JSON.stringify(searchInputVal));
+
+    getSearchHistory();
+}
+
+function getSearchHistory() {
+    var lastCity = JSON.parse(localStorage.getItem('searchInputVal'));
+
+    cityQue.text(lastCity);
+
+    if (!lastCity) {
+        return;
+    }
+    else {
+        cityQue.on('click', weatherDisplay(lastCity));
+    }
 }
 
 
