@@ -88,7 +88,6 @@
 }
 
 #five-day-forecast-section {
-    border: 1px solid black;
     height: 30vh;
     margin-top: 1rem;
 }
@@ -97,6 +96,99 @@
     font-size: 1.5rem;
 }
 
+.day-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 25vh;
+    padding-top: 1rem;
+    color: #fff;
+}
+
+/* Each card set to each day */
+.day-1 {
+    border: 1px solid black;
+    width: 20%;
+    margin-right: 1rem;
+    background-color: rgb(35, 31, 65);
+}
+
+.day-2 {
+    border: 1px solid black;
+    width: 20%;
+    margin-right: 1rem;
+    background-color: rgb(35, 31, 65);
+}
+
+.day-3 {
+    border: 1px solid black;
+    width: 20%;
+    margin-right: 1rem;
+    background-color: rgb(35, 31, 65);
+}
+
+.day-4 {
+    border: 1px solid black;
+    width: 20%;
+    margin-right: 1rem;
+    background-color: rgb(35, 31, 65);
+}
+
+.day-5 {
+    border: 1px solid black;
+    width: 20%;
+    background-color: rgb(35, 31, 65);
+}
+
+/* Creates space for each card */
+.temp {
+    margin-bottom: 1rem;
+}
+
+.temp-1 {
+    margin-bottom: 1rem;
+}
+
+.temp-2 {
+    margin-bottom: 1rem;
+}
+
+.temp-3 {
+    margin-bottom: 1rem;
+}
+
+.temp-4 {
+    margin-bottom: 1rem;
+}
+
+.temp-5 {
+    margin-bottom: 1rem;
+}
+
+.wind {
+    margin-bottom: 1rem;
+}
+
+.wind-1 {
+    margin-bottom: 1rem;
+}
+
+.wind-2 {
+    margin-bottom: 1rem;
+}
+
+.wind-3 {
+    margin-bottom: 1rem;
+}
+
+.wind-4 {
+    margin-bottom: 1rem;
+}
+
+.wind-5 {
+    margin-bottom: 1rem;
+}
+
+/* To hide the local variables */
 .hide {
     visibility: hidden;
 }
