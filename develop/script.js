@@ -36,13 +36,15 @@ function handleFormSubmit(event) {
     apiSearch(searchInputVal);
 }
 
+// ADD HTTPS TO LINK
+
 // Adjusts the search links
 function apiSearch(searchInputVal) {
 
-    var latAndLonLink = `http://api.openweathermap.org/geo/1.0/direct?q=&limit=1&appid=60211b1fb1aaf71717286d520f6cfd4c`;
-    
+    var latAndLonLink = `https://api.openweathermap.org/geo/1.0/direct?q=&limit=1&appid=60211b1fb1aaf71717286d520f6cfd4c`;
+
     if (searchInputVal) {
-        latAndLonLink = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=60211b1fb1aaf71717286d520f6cfd4c`;
+        latAndLonLink = `https://api.openweathermap.org/geo/1.0/direct?q=${searchInputVal}&limit=1&appid=60211b1fb1aaf71717286d520f6cfd4c`;
     }
 
     fetch(latAndLonLink)
@@ -53,53 +55,68 @@ function apiSearch(searchInputVal) {
             return response.json();
         })
         .then(function (data) {
-
             console.log(data);
+
             var latValue = data[0].lat;
             var lonValue = data[0].lon;
-            var weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
-            
-            return fetch(weatherLink)
-            .then(function (response) {
-                if(!response.ok) {
-                    return Promise.reject(Error('Response is bad!'));
+
+            function weatherSearchApi(latValue, lonValue) {
+                
+                if(latValue && lonValue) {
+                    var weatherLink = `https://api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
                 }
-            })
-            .then(function (data) {
-                console.log(data);
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
 
-        weatherSearchApi(weatherLink);
-}
+                fetch(weatherLink)
+                .then(function (response) {
+                    if(!response.ok) {
+                        return Promise.reject(Error('Response is bad!'));
+                    }
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data);
 
-function weatherSearchApi(weatherLink) {
-
-    var weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=&lon=&appid=60211b1fb1aaf71717286d520f6cfd4c`;
-
-    if(weatherLink) {
-        weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
-    }
-
-    fetch(weatherLink)
-        .then(function (response) {
-            if(!response.ok) {
-                return Promise.reject(Error('Response is bad!'));
+                    //code here
+                    
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+    
             }
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
+            weatherSearchApi(latValue, lonValue);
         })
         .catch(function (error) {
             console.log(error);
         });
 
-
+        // weatherSearchApi(weatherLink);
 }
+
+// function weatherSearchApi(weatherLink) {
+
+//     var weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=&lon=&appid=60211b1fb1aaf71717286d520f6cfd4c`;
+
+//     if(weatherLink) {
+//         weatherLink = `api.openweathermap.org/data/2.5/forecast?lat=${latValue}&lon=${lonValue}&appid=60211b1fb1aaf71717286d520f6cfd4c`;
+//     }
+
+//     fetch(weatherLink)
+//         .then(function (response) {
+//             if(!response.ok) {
+//                 return Promise.reject(Error('Response is bad!'));
+//             }
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data);
+//         })
+//         .catch(function (error) {
+//             console.log(error);
+//         });
+
+
+// }
 
 function weatherDisplay(lastCity) {
     // display all my api data to the window
@@ -107,7 +124,6 @@ function weatherDisplay(lastCity) {
 
 function setSearchHistory(searchInputVal) {
     cityQue.removeClass('hide');
-    // cityQue.text(searchInputVal);
 
     localStorage.setItem("searchInputVal", JSON.stringify(searchInputVal));
 
