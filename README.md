@@ -8,7 +8,7 @@ When you type a city into the search bar, it displays that day's weather, and th
 
 No installation needed, just go to the deployed application link below.
 
-Deployed application - 
+Deployed application - https://toosparky.github.io/module-6-challenge/
 
 ## Usage
 
