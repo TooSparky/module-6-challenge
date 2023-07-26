@@ -51,9 +51,6 @@ var humidityFive = $('.humidity-5');
 var dateFive = $('.date-5');
 var iconFive = $('.icon-5');
 
-// API CALLBACK LINK
-// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
 // On search, calls apiCall function
 searchBtn.on('click', handleFormSubmit);
 
@@ -67,6 +64,7 @@ function handleFormSubmit(event) {
     $('#wicon-4').removeClass('hide');
     $('#wicon-5').removeClass('hide');
 
+    // Searchbar Value
     var searchInputVal = $('#search-bar').val().trim();
 
     if (!searchInputVal) {
@@ -74,13 +72,10 @@ function handleFormSubmit(event) {
         return;
     }
 
-    console.log(searchInputVal);
     setSearchHistory(searchInputVal);
     apiSearch(searchInputVal);
     setUpDates(searchInputVal)
 }
-
-// ADD HTTPS TO LINK
 
 // Adjusts the search links
 function apiSearch(searchInputVal) {
@@ -101,6 +96,7 @@ function apiSearch(searchInputVal) {
         .then(function (data) {
             console.log(data);
 
+            // Gets latitude and longitude
             var latValue = data[0].lat;
             var lonValue = data[0].lon;
 
@@ -118,98 +114,129 @@ function apiSearch(searchInputVal) {
                     return response.json();
                 })
                 .then(function (data) {
+                    // Gets weather data
                     console.log(data);
 
-                    //current day
+                    // current day
+                    // Wind Data
                     var windData = data.list[0].wind.gust;
                     wind.text('Wind: ' + windData + ' MPH');
 
+                    // Humidity Data
                     var humidityData = data.list[0].main.humidity;
                     humidity.text('Humidity: ' + humidityData + '%');
 
+                    // Temperature Data and converstion
                     var tempData = data.list[0].main.temp;
+                    tempData = (tempData - 273.15) * 1.8 + 32;
+                    tempData = tempData.toFixed(0);
                     temperature.text('Temp: ' + tempData + ' F');
 
+                    // Icon Data
                     var iconData = data.list[0].weather[0].icon;
                     icon.text(iconData);
                     var iconUrl = 'http://openweathermap.org/img/w/' + iconData + '.png';
                     $('#wicon').attr('src', iconUrl);
 
                     //dayOne
-                    var windData = data.list[1].wind.gust;
+                    var windData = data.list[2].wind.gust;
                     windOne.text('Wind: ' + windData + ' MPH');
 
-                    var humidityData = data.list[1].main.humidity;
+                    var humidityData = data.list[2].main.humidity;
                     humidityOne.text('Humidity: ' + humidityData + '%');
 
-                    var tempData = data.list[1].main.temp;
+                    var tempData = data.list[2].main.temp;
+                    tempData = (tempData - 273.15) * 1.8 + 32;
+                    tempData = tempData.toFixed(0);
                     temperatureOne.text('Temp: ' + tempData + ' F');
 
-                    var iconData = data.list[1].weather[0].icon;
+                    var iconData = data.list[2].weather[0].icon;
                     iconOne.text(iconData);
                     var iconUrl = 'http://openweathermap.org/img/w/' + iconData + '.png';
                     $('#wicon-1').attr('src', iconUrl);
-                    console.log(iconUrl);
+
+                    var dates = data.list[2].dt_txt;
+                    dateOne.text(dates);
 
                     //dayTwo
-                    var windData = data.list[2].wind.gust;
+                    var windData = data.list[10].wind.gust;
                     windTwo.text('Wind: ' + windData + ' MPH');
 
-                    var humidityData = data.list[2].main.humidity;
+                    var humidityData = data.list[10].main.humidity;
                     humidityTwo.text('Humidity: ' + humidityData + '%');
 
-                    var tempData = data.list[2].main.temp;
+                    var tempData = data.list[10].main.temp;
+                    tempData = (tempData - 273.15) * 1.8 + 32;
+                    tempData = tempData.toFixed(0);
                     temperatureTwo.text('Temp: ' + tempData + ' F');
 
-                    var iconData = data.list[2].weather[0].icon;
+                    var iconData = data.list[10].weather[0].icon;
                     iconTwo.text(iconData);
                     var iconUrl = 'http://openweathermap.org/img/w/' + iconData + '.png';
                     $('#wicon-2').attr('src', iconUrl);
 
+                    var dates = data.list[10].dt_txt;
+                    dateTwo.text(dates);
+
                     //dayThree
-                    var windData = data.list[3].wind.gust;
+                    var windData = data.list[18].wind.gust;
                     windThree.text('Wind: ' + windData + ' MPH');
 
-                    var humidityData = data.list[3].main.humidity;
+                    var humidityData = data.list[18].main.humidity;
                     humidityThree.text('Humidity: ' + humidityData + '%');
 
-                    var tempData = data.list[3].main.temp;
+                    var tempData = data.list[18].main.temp;
+                    tempData = (tempData - 273.15) * 1.8 + 32;
+                    tempData = tempData.toFixed(0);
                     temperatureThree.text('Temp: ' + tempData + ' F');
 
-                    var iconData = data.list[3].weather[0].icon;
+                    var iconData = data.list[18].weather[0].icon;
                     iconThree.text(iconData);
                     var iconUrl = 'http://openweathermap.org/img/w/' + iconData + '.png';
                     $('#wicon-3').attr('src', iconUrl);
 
+                    var dates = data.list[18].dt_txt;
+                    dateThree.text(dates);
+
                     //dayFour
-                    var windData = data.list[4].wind.gust;
+                    var windData = data.list[26].wind.gust;
                     windFour.text('Wind: ' + windData + ' MPH');
 
-                    var humidityData = data.list[4].main.humidity;
+                    var humidityData = data.list[26].main.humidity;
                     humidityFour.text('Humidity: ' + humidityData + '%');
 
-                    var tempData = data.list[4].main.temp;
+                    var tempData = data.list[26].main.temp;
+                    tempData = (tempData - 273.15) * 1.8 + 32;
+                    tempData = tempData.toFixed(0);
                     temperatureFour.text('Temp: ' + tempData + ' F');
 
-                    var iconData = data.list[4].weather[0].icon;
+                    var iconData = data.list[26].weather[0].icon;
                     iconFour.text(iconData);
                     var iconUrl = 'http://openweathermap.org/img/w/' + iconData + '.png';
                     $('#wicon-4').attr('src', iconUrl);
 
+                    var dates = data.list[26].dt_txt;
+                    dateFour.text(dates);
+
                     //dayFive
-                    var windData = data.list[5].wind.gust;
+                    var windData = data.list[34].wind.gust;
                     windFive.text('Wind: ' + windData + ' MPH');
 
-                    var humidityData = data.list[5].main.humidity;
+                    var humidityData = data.list[34].main.humidity;
                     humidityFive.text('Humidity: ' + humidityData + '%');
 
-                    var tempData = data.list[5].main.temp;
+                    var tempData = data.list[34].main.temp;
+                    tempData = (tempData - 273.15) * 1.8 + 32;
+                    tempData = tempData.toFixed(0);
                     temperatureFive.text('Temp: ' + tempData + ' F');
 
-                    var iconData = data.list[5].weather[0].icon;
+                    var iconData = data.list[34].weather[0].icon;
                     iconFive.text(iconData);
                     var iconUrl = 'http://openweathermap.org/img/w/' + iconData + '.png';
                     $('#wicon-5').attr('src', iconUrl);
+
+                    var dates = data.list[34].dt_txt;
+                    dateFive.text(dates);
                     
                 })
                 .catch(function (error) {
@@ -224,27 +251,14 @@ function apiSearch(searchInputVal) {
         });
 }
 
-function weatherDisplay(lastCity) {
-    //display local storage weather
-}
-
+// Sets up current date
 function setUpDates(searchInputVal) {
     var dateAndSearch = searchInputVal + ' ' + currentTime;
-
-    var dayOne = dayjs().day(3).format('M/D/YYYY');
-    var dayTwo = dayjs().day(4).format('M/D/YYYY');
-    var dayThree = dayjs().day(5).format('M/D/YYYY');
-    var dayFour = dayjs().day(6).format('M/D/YYYY');
-    var dayFive = dayjs().day(7).format('M/D/YYYY');
-    dateOne.text(dayOne);
-    dateTwo.text(dayTwo);
-    dateThree.text(dayThree);
-    dateFour.text(dayFour);
-    dateFive.text(dayFive);
 
     citySearched.text(dateAndSearch);
 }
 
+// Sets search input into local storage
 function setSearchHistory(searchInputVal) {
     cityQue.removeClass('hide');
 
@@ -253,6 +267,7 @@ function setSearchHistory(searchInputVal) {
     getSearchHistory();
 }
 
+// Gets search input from local storage
 function getSearchHistory() {
     var lastCity = JSON.parse(localStorage.getItem('searchInputVal'));
 
@@ -260,8 +275,5 @@ function getSearchHistory() {
 
     if (!lastCity) {
         return;
-    }
-    else {
-        weatherDisplay(lastCity);
     }
 }

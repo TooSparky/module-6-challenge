@@ -8,13 +8,13 @@ When you type a city into the search bar, it displays that day's weather, and th
 
 No installation needed, just go to the deployed application link below.
 
-
+Deployed application - 
 
 ## Usage
 
 To use, all you need to do is click on the search bar in the top left of the page, and search for a city. The application should do all the rest.
 
-![screenshot of application](./assets/)
+![screenshot of application](./assets/opera-snapshot-weather-api.png)
 
 ## Credits
 
